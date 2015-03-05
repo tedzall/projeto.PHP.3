@@ -3,9 +3,10 @@
 
 	$conexao = conexaoDB();
 
-	$palavra = stringParaBusca($_REQUEST['palavra']);
+//	$palavra = stringParaBusca($_REQUEST['palavra']);
+	$palavra = $_REQUEST['palavra'];
 
-	$sql = "SELECT cod_conteudo, stit_conteudo FROM tbl_conteudo WHERE mtexto_conteudo REGEXP :palavra ";
+	$sql = "SELECT cod_conteudo, stit_conteudo FROM tbl_conteudo WHERE mtexto_conteudo = :palavra ";
 	$rst = $conexao->prepare($sql);
 	$rst->bindValue(":palavra",$palavra,PDO::PARAM_STR); 
 	$rst->execute();
